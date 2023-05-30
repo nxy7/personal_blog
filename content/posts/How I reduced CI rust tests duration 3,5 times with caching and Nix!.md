@@ -6,7 +6,7 @@ draft: false
 
 One of my project consists of backend (rust) split into many services and frontend made with Svelte. Sooner rather than later I found out that rust builds that we're rather quick locally took ages in CI, resulting in poor CI feedback experience and test times exceeding 15minutes. This post was made to help people struggling with simmilar issues.
 
-## Project Structure
+# Project Structure
 The way I structure my projects will influence some of the futhurer solutions, so I thought it's worthwhile sharing
 ```yaml
     # in this case all backend services all written in rust
@@ -23,7 +23,7 @@ The way I structure my projects will influence some of the futhurer solutions, s
         - other scripts...
 ```
 
-## Test script
+# Test script
 As I've mentioned above I'm running tests from scripts locally and invoking scripts files in CI. Here's how my current ci_tests.nu script file looks like. You  might not be fammiliar with nushell (it's a shell but also a scripting language) but I'm sure you can get the general idea.
 
 ```nushell
@@ -123,14 +123,14 @@ def build-rust-workspace [] {
 
 This script gives me really nice output in my CI
 ![CI Pipeline output](https://i.imgur.com/NonjwGm.png)
-## Solution
+# Solution
 There are two main techniques that I've used to reduce CI times.
 - Nix to manage project dependencies
 - Cache rust build artifacts and project dependencies (managed by nix)
 
 Arguably you can get away with just caching, but I think the two really go well together.
 
-### Nix
+## Nix
 Nix describes itself as `tool that takes a unique approach to package management and system configuration.`. You don't need to use it as system configuration tool to get rewards from it's ecosystem. In short: nix allows you to specify your projects dependencies and let anyone run your project from any machine. Imagine you clone your project onto machine that doesn't have rust or nodejs installed. With nix you can specify your project dependencies in flake.nix file (there are other ways but nix seems to head toward using flakes) and run one command `nix develop . -c bash` to get shell with all dependencies ready to use. If that doesn't sound awsome to you I don't know what will.
 
 Without getting into internals of nix, when you run command above nix will download ALL dependencies needed by your project into 'nix store', that we can later cache in CI. Thanks to that if your project relies on rust, your CI will download rust only once and reuse it in futhurer CI runs.
@@ -184,7 +184,7 @@ To use nix in my CI use the following workflow action
 ```
 Setting store inside /home/runner is actually pretty important here, if You don't do that You might run into some permissions issues when trying to save data from cache.
 
-### Caching
+## Caching
 
 Github has actions that make caching very easy. I use *cache/restore* and *cache/save* actions to manage my cache. Here's my workflows/tests.yml file, I'll later explain parts related to caching.
 ```yml

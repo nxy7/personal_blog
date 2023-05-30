@@ -7,18 +7,18 @@ Perhaps just like me you see value in making easily reproducible dev environment
 
 Well, I think it's something that everone should take into consideration. Reproducible dev environments have one more pro - there're self-documenting state of your project. You can look into things your dev env provides you to know which programming languages and tools the project is using.
 
-## Leading dev environment solutions
+# Leading dev environment solutions
 I've personally tried 2 tools that are trying to achieve easily reproducible environments: *Nix* and *DevContainers*. Both come with some additional complexity when setting up and both are great tools. I prefer Nix over DevContainers as not every IDE supports DevContainers. Imao the biggest things that DevContainers have going for them are their integrations with VsCode and online Dev Environments. If you specify *.devcontainer.json* file at the root of your project you could use something like github codespaces to load the project in browser version of vscode, with the project running on github server. It can be significantly faster than working locally if you're coding using cheaper laptop. Using Nix inside DevContainer also is a possibility - you would use Nix to produce coding environment and DevContainer to provide Nix, but that's out of the scope of this post.
 
-## Getting started with Nix
+# Getting started with Nix
 
-### Installation
+## Installation
 First things first - you have to install Nix on your system. I've personally tried it on Ubuntu (WSL2), Manjaro and Arch systems but Nix is supposed to work with MacOS too. Everything You need is on [nix page](https://nixos.org/download.html#download-nix), just remember to use 'single-user installation' instructions if you're running wsl2. After running a single script You're done. Well that was easy ^_^
 
-### Enabling flakes
+## Enabling flakes
 Nix has experimental feature that is pretty much the direction of the project - flakes. Flakes allow for declarative configuration of project dependencies and building process while being easily shareable. They integrate nicely with commonly used VCS - git. Nix has some baggage coming with it, that might be confusing for newcomers (there are multiple ways to achieve the same thing) but if you have option to use flakes I'd highly recommend it. To enable flake support add `experimental-features = nix-command flakes` to */etc/nix/nix.conf* (multi user installation) or *~/.config/nix/nix.conf* (single user installation).
 
-### Explaining Nix flake structure
+## Explaining Nix flake structure
 Open any project you're developing and run `nix flake init`. It should produce the following flake.nix file
 ```nix
 {
@@ -35,7 +35,7 @@ Open any project you're developing and run `nix flake init`. It should produce t
 ```
 Default flake produced by `nix flake init` doesn't provide any developer shells and instead specifies packages that the project can build. In this case it's 'hello' package from nixpkgs (the biggest repository for nix packages). You can try it out by either running `nix run .` (which will build and run `hello` package) or by running `nix build .` (that will only build hello binary and add 'result' symlink in your project with binary in `result/bin/` folder).
 
-Remember - flakes are declarative configuration of your project, so you need to know what optiopns does flake.nix provide. As you can see at root level there's `description` and `outputs` properties. Description is pretty self explanatory, outputs on the other hand specify things your flake can do for you. Our current flake has output that takes 2 arguments `self` and `nixpkgs` and provides 2 outputs `packages.x86_64-linux.hello` and `packages.x86_64-linux.default`. When we're running `nix run .` we're telling nix: "can you build and run default package for me?". You could also run specific output like `nix run .#hello`.
+Remember - flakes are declarative configuration of your project, so you need to know what options does flake.nix provide. As you can see at root level there's `description` and `outputs` properties. Description is pretty self explanatory, outputs on the other hand specify things your flake can do for you. Our current flake has output that takes 2 arguments `self` and `nixpkgs` and provides 2 outputs `packages.x86_64-linux.hello` and `packages.x86_64-linux.default`. When we're running `nix run .` we're telling nix: "can you build and run default package for me?". You could also run specific output like `nix run .#hello`.
 
 Now few words about arguments we provide to nix `outputs`. I'm not here to teach you about Nix language and you'd be better off using official resources for that, but I'll try explaining structure of it. `outputs` field is in reality a nix function that takes some arguments and returns structured object (like JSON). Some fields in returned object are *special* and have meaning to other nix commands. `nix run` and `nix build` are looking for 'packages.{system}.{outputName}' propety of `outputs`. Default flake has just 2 dependencies: "self" and "nixpkgs". Those 2 are special and provided to you by default. You could also provide `inputs` field at the root of flake file like:
 ```nix
