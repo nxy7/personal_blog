@@ -3,7 +3,7 @@ languageCode = 'pl-PL'
 title = 'just some developer thoughts'
 theme = 'PaperMod'
 
-disqusShortname = 'nxyt.disqus.com'
+disqusShortname = 'nxyt'
 [params]
   comments = true
   name = 'Dawid Danieluk'
