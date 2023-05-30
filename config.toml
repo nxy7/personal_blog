@@ -1,5 +1,5 @@
-baseURL = 'https://nxy7.github.io/personal_blog/'
-languageCode = 'en-us'
+baseURL = 'https://nxy7.github.io/personal_blog'
+languageCode = 'pl-PL'
 title = 'just some developer thoughts'
 theme = 'PaperMod'
 
