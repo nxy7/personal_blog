@@ -2,3 +2,9 @@ baseURL = 'http://blog.noxy.site/'
 languageCode = 'en-us'
 title = 'just some developer thoughts'
 theme = 'PaperMod'
+
+disqusShortname = 'nxyt.disqus.com'
+[params]
+  comments = true
+  name = 'Dawid Danieluk'
+  bio = 'I like learning about new technologies that can make my work easier.'

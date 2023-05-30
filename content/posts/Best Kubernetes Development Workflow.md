@@ -5,8 +5,7 @@ draft: false
 ---
 At the start I want to point out that all opinions in this piece are just that - opinions. I've tried multiple workflows and all I want to do in this
 article is sharing what I've landed at and what difficulties I've had using other methods of developing in kubernetes. My main motivation for writing it is 
-sparing someone difficutlies related with setting up dev environment. There are many solutions out there claiming that make working with k8s easier, but
-as usually with greater ease of development comes another layer of abstraction that sometimes might actually make things worse.
+sparing someone difficutlies related with setting up dev environment. There are many solutions out there claiming that they make working with k8s easier, but with greater ease of development comes another layer of abstraction that sometimes might actually make things worse.
 
 Let's start with requirements I have for my dev environment:
 - short feedback loop

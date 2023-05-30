@@ -10,15 +10,15 @@
 <meta name="description" content="One of my project consists of backend (rust) split into many services and frontend made with Svelte. Sooner rather than later I found out that rust builds that we&rsquo;re rather quick locally took ages in CI, resulting in poor CI feedback experience and test times exceeding 15minutes. This post was made to help people struggling with simmilar issues.
 Project Structure The way I structure my projects will influence some of the futhurer solutions, so I thought it&rsquo;s worthwhile sharing">
 <meta name="author" content="">
-<link rel="canonical" href="http://example.org/posts/how-i-reduced-ci-rust-tests-duration-35-times-with-caching-and-nix/">
+<link rel="canonical" href="http://blog.noxy.site/posts/how-i-reduced-ci-rust-tests-duration-35-times-with-caching-and-nix/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.3613efbd0b1772781e8f49935e973cae632a7f61471c05b17be155505ccf87b5.css" integrity="sha256-NhPvvQsXcngej0mTXpc8rmMqf2FHHAWxe&#43;FVUFzPh7U=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="http://example.org/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://example.org/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://example.org/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://example.org/apple-touch-icon.png">
-<link rel="mask-icon" href="http://example.org/safari-pinned-tab.svg">
+<link rel="icon" href="http://blog.noxy.site/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://blog.noxy.site/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://blog.noxy.site/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://blog.noxy.site/apple-touch-icon.png">
+<link rel="mask-icon" href="http://blog.noxy.site/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
 <noscript>
@@ -61,7 +61,7 @@ Project Structure The way I structure my projects will influence some of the fut
 <meta property="og:description" content="One of my project consists of backend (rust) split into many services and frontend made with Svelte. Sooner rather than later I found out that rust builds that we&rsquo;re rather quick locally took ages in CI, resulting in poor CI feedback experience and test times exceeding 15minutes. This post was made to help people struggling with simmilar issues.
 Project Structure The way I structure my projects will influence some of the futhurer solutions, so I thought it&rsquo;s worthwhile sharing" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://example.org/posts/how-i-reduced-ci-rust-tests-duration-35-times-with-caching-and-nix/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="http://blog.noxy.site/posts/how-i-reduced-ci-rust-tests-duration-35-times-with-caching-and-nix/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-04-20T09:03:20-08:00" />
 <meta property="article:modified_time" content="2023-04-20T09:03:20-08:00" />
 
@@ -80,13 +80,13 @@ Project Structure The way I structure my projects will influence some of the fut
       "@type": "ListItem",
       "position":  1 ,
       "name": "Posts",
-      "item": "http://example.org/posts/"
+      "item": "http://blog.noxy.site/posts/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "How I've reduced CI rust tests duration 4x with caching and Nix!",
-      "item": "http://example.org/posts/how-i-reduced-ci-rust-tests-duration-35-times-with-caching-and-nix/"
+      "item": "http://blog.noxy.site/posts/how-i-reduced-ci-rust-tests-duration-35-times-with-caching-and-nix/"
     }
   ]
 }
@@ -108,14 +108,14 @@ Project Structure The way I structure my projects will influence some of the fut
   "dateModified": "2023-04-20T09:03:20-08:00",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "http://example.org/posts/how-i-reduced-ci-rust-tests-duration-35-times-with-caching-and-nix/"
+    "@id": "http://blog.noxy.site/posts/how-i-reduced-ci-rust-tests-duration-35-times-with-caching-and-nix/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "just some developer thoughts",
     "logo": {
       "@type": "ImageObject",
-      "url": "http://example.org/favicon.ico"
+      "url": "http://blog.noxy.site/favicon.ico"
     }
   }
 }
@@ -137,7 +137,7 @@ Project Structure The way I structure my projects will influence some of the fut
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://example.org/" accesskey="h" title="just some developer thoughts (Alt + H)">just some developer thoughts</a>
+            <a href="http://blog.noxy.site/" accesskey="h" title="just some developer thoughts (Alt + H)">just some developer thoughts</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -486,7 +486,7 @@ After:
     </main>
     
 <footer class="footer">
-    <span>&copy; 2023 <a href="http://example.org/">just some developer thoughts</a></span>
+    <span>&copy; 2023 <a href="http://blog.noxy.site/">just some developer thoughts</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &

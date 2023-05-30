@@ -3,12 +3,12 @@ title: "How to use Nix to make reproducible dev environments"
 date: 2023-03-17T09:03:20-08:00
 draft: false
 ---
-Hello everone. Perhaps just like me you see value in making easily reproducible dev environments. Wouldn't it be great if you could have projects with different versions of dependencies that anyone could just jump right into, type command or two and have everything necesarry for contributing?
+Perhaps just like me you see value in making easily reproducible dev environments. Wouldn't it be great if you could have projects with different versions of dependencies that anyone could just jump right into, type command or two and have everything necesarry for contributing?
 
 Well, I think it's something that everone should take into consideration. Reproducible dev environments have one more pro - there're self-documenting state of your project. You can look into things your dev env provides you to know which programming languages and tools the project is using.
 
 ## Leading dev environment solutions
-I've personally tried 2 tools that are trying to achieve easily reproducible environments: *Nix* and *DevContainers*. Both come with some additional complexity when setting up and both are great tools. I prefer Nix over DevContainers as not every IDE supports DevContainers. Imao the biggest thing that DevContainers have going for them are their integrations with VsCode and online Dev Environments. If you specify *.devcontainer.json* file at the root of your project you could use for example github codespaces to load the project in browser version of vscode, with the project running on github server. It can be significantly faster than working locally if you're coding using cheaper laptop. Using Nix inside DevContainer also is a possibility - you would use Nix to produce coding environment and DevContainer to provide Nix, but that's out of the scope of this post.
+I've personally tried 2 tools that are trying to achieve easily reproducible environments: *Nix* and *DevContainers*. Both come with some additional complexity when setting up and both are great tools. I prefer Nix over DevContainers as not every IDE supports DevContainers. Imao the biggest things that DevContainers have going for them are their integrations with VsCode and online Dev Environments. If you specify *.devcontainer.json* file at the root of your project you could use something like github codespaces to load the project in browser version of vscode, with the project running on github server. It can be significantly faster than working locally if you're coding using cheaper laptop. Using Nix inside DevContainer also is a possibility - you would use Nix to produce coding environment and DevContainer to provide Nix, but that's out of the scope of this post.
 
 ## Getting started with Nix
 
