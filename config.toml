@@ -1,4 +1,4 @@
-baseURL = 'http://blog.noxy.site/'
+baseURL = 'https://nxy7.github.io/personal_blog/'
 languageCode = 'en-us'
 title = 'just some developer thoughts'
 theme = 'PaperMod'
