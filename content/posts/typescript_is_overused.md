@@ -1,7 +1,7 @@
 ---
 title: "Typescript is overhyped"
 date: 2023-05-30T09:03:20-08:00
-draft: true
+draft: false
 ---
 Every time you ask someone what his favourite programming language is, chances are they'll respond "Typescript!". I think most people just don't have much contact with wide range of technologies and will usually pick language they use the most as their 'favourite'. It's even more obvious in case of Typescript which with all it's flaws is infinitely better than javascript, so in comparion it seems like the best thing in the world.
 
@@ -30,8 +30,55 @@ My question is: what's the point of picking scripting language if you have to sh
 I like to think that we should pick the best tool for the job, if your job doesn't benefit from *scripting*, maybe there are better choices than *scripting lanugage*. 
 
 ## Typescript is confusing
-implicit memory alocations lead to 
-## Typescript can lie
-## Typescript requires compile step
+Let's say you have the following code
+```typescript
+let x = {
+    value: 1
+}
 
+let y = 1
+
+let z = {
+    x: x,
+    y: y,
+    v: 1
+}
+
+x.value++
+y++
+z.v++
+
+console.log(z)
+```
+The answer is `{ x: { value: 2 }, y: 1, v: 2 }`. I hate the fact that it's not obvious and even if you're familliar with the lanugage it's still necesarry to double check. If you're suprised at this answer, the reason for that is javascript implicit memory management. Some things get copied by reference others are copied by value and while you absolutely can learn all those rules, it'll still slow you down. Let's say for whatever reason we want to change `z` to 
+```typescript
+let z = {
+    x: x.value,
+    ...
+}
+```
+It's not a big change, maybe you've decided that there's no need to keep whole object reference inside `z` as all you're really using is just this one value. I believe it's not a stretch to say that even though it's not hard to learn TS copying rules, it's still easy to make those mistakes while coding. If you didn't notice `z.x` value after `x.value++` is now still holding 1 as `x: x.value` was copied by value.
+
+This is just something I dislike about implicit memory management, there's plenty of JS specific weird behaviors like
+```typescript
+true == ![]; // -> false
+Number(true); // -> 1
+Number([]); // -> 0
+1 == 0; // -> false
+
+// or
+
+null == 0; // -> false
+null > 0; // -> false
+null >= 0; // -> true
+```
+while Typescript can catch some of this (not all), it's still like putting lipstick on a pig. Feel free to browse some JS/TS weird posts like [this one](https://javascript.plainenglish.io/here-are-7-weird-things-in-javascript-42da32e7b50) which showcases all those inconsistencies.
+
+## Typescript can lie
+I think that's big one. When you're writing Typescript what you're really doing is writing code describing your other code. TS isn't executed by the browser nor V8 and it's compiled to Javascript in the end. It's just some boilerplate that's can make your IDE give you more helpful hints about the program (and can enforce contracts on functions). As you're trying to manually describe what the code is doing and it's not tied to the real functionality TS have things like `!`, `any`, `as` which do not leak into runtime and are just ways to satisfy *Typescript compiler*. You can easily write TS code that's compiling but produces undefined behaviour. 
+
+## Typescript requires compile step
+It's 2023, do we really need to compile our code into other code? Setting up new projects should always be one command away and I personally think that dev enviroment simplicity is something valuable. Sure, setting up `tsc` is not difficult, but solving problems related to compile step instead of actual program is just waste of everyone's time. Imao having one context of code execution is enough and there's no valid reason to deal with additional compile step. I'm rooting for types in Javascript in the future as types integrated into JS runtime could also solve my other issues with the language.
  
+# Summary
+As you can probably tell I'm not the biggest fan of TS. I don't mind writing typescript, but when you actually spend some time seeing alternatives TS seems bleak in comparison. If it makes sense - sure, use typescript. All I'm asking for is not making it default choice for everything :-)
