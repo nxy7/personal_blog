@@ -2,6 +2,7 @@ baseURL = 'https://nxy7.github.io/personal_blog'
 languageCode = 'pl-PL'
 title = 'just some developer thoughts'
 theme = 'PaperMod'
+googleAnalytics = 'G-D4BXHY930J'
 
 disqusShortname = 'nxyt'
 [params]
