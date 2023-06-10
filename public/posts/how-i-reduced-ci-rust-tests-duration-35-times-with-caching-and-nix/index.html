@@ -10,15 +10,15 @@
 <meta name="description" content="One of my project consists of backend (rust) split into many services and frontend made with Svelte. Sooner rather than later I found out that rust builds that we&rsquo;re rather quick locally took ages in CI, resulting in poor CI feedback experience and test times exceeding 15minutes. This post was made to help people struggling with simmilar issues.
 Project Structure The way I structure my projects will influence some of the futhurer solutions, so I thought it&rsquo;s worthwhile sharing">
 <meta name="author" content="">
-<link rel="canonical" href="http://blog.noxy.site/posts/how-i-reduced-ci-rust-tests-duration-35-times-with-caching-and-nix/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.3613efbd0b1772781e8f49935e973cae632a7f61471c05b17be155505ccf87b5.css" integrity="sha256-NhPvvQsXcngej0mTXpc8rmMqf2FHHAWxe&#43;FVUFzPh7U=" rel="preload stylesheet" as="style">
-<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+<link rel="canonical" href="https://nxy7.github.io/personal_blog/posts/how-i-reduced-ci-rust-tests-duration-35-times-with-caching-and-nix/">
+<link crossorigin="anonymous" href="/personal_blog/assets/css/stylesheet.3613efbd0b1772781e8f49935e973cae632a7f61471c05b17be155505ccf87b5.css" integrity="sha256-NhPvvQsXcngej0mTXpc8rmMqf2FHHAWxe&#43;FVUFzPh7U=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/personal_blog/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="http://blog.noxy.site/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://blog.noxy.site/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://blog.noxy.site/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://blog.noxy.site/apple-touch-icon.png">
-<link rel="mask-icon" href="http://blog.noxy.site/safari-pinned-tab.svg">
+<link rel="icon" href="https://nxy7.github.io/personal_blog/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://nxy7.github.io/personal_blog/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://nxy7.github.io/personal_blog/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://nxy7.github.io/personal_blog/apple-touch-icon.png">
+<link rel="mask-icon" href="https://nxy7.github.io/personal_blog/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
 <noscript>
@@ -57,11 +57,22 @@ Project Structure The way I structure my projects will influence some of the fut
         }
 
     </style>
-</noscript><meta property="og:title" content="How I&#39;ve reduced CI rust tests duration 4x with caching and Nix!" />
+</noscript>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D4BXHY930J"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-D4BXHY930J', { 'anonymize_ip': false });
+}
+</script>
+<meta property="og:title" content="How I&#39;ve reduced CI rust tests duration 4x with caching and Nix!" />
 <meta property="og:description" content="One of my project consists of backend (rust) split into many services and frontend made with Svelte. Sooner rather than later I found out that rust builds that we&rsquo;re rather quick locally took ages in CI, resulting in poor CI feedback experience and test times exceeding 15minutes. This post was made to help people struggling with simmilar issues.
 Project Structure The way I structure my projects will influence some of the futhurer solutions, so I thought it&rsquo;s worthwhile sharing" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://blog.noxy.site/posts/how-i-reduced-ci-rust-tests-duration-35-times-with-caching-and-nix/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://nxy7.github.io/personal_blog/posts/how-i-reduced-ci-rust-tests-duration-35-times-with-caching-and-nix/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-04-20T09:03:20-08:00" />
 <meta property="article:modified_time" content="2023-04-20T09:03:20-08:00" />
 
@@ -75,18 +86,18 @@ Project Structure The way I structure my projects will influence some of the fut
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position":  1 ,
-      "name": "Posts",
-      "item": "http://blog.noxy.site/posts/"
-    }, 
+  "itemListElement": [, 
     {
       "@type": "ListItem",
       "position":  2 ,
+      "name": "Posts",
+      "item": "https://nxy7.github.io/personal_blog/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
       "name": "How I've reduced CI rust tests duration 4x with caching and Nix!",
-      "item": "http://blog.noxy.site/posts/how-i-reduced-ci-rust-tests-duration-35-times-with-caching-and-nix/"
+      "item": "https://nxy7.github.io/personal_blog/posts/how-i-reduced-ci-rust-tests-duration-35-times-with-caching-and-nix/"
     }
   ]
 }
@@ -108,18 +119,30 @@ Project Structure The way I structure my projects will influence some of the fut
   "dateModified": "2023-04-20T09:03:20-08:00",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "http://blog.noxy.site/posts/how-i-reduced-ci-rust-tests-duration-35-times-with-caching-and-nix/"
+    "@id": "https://nxy7.github.io/personal_blog/posts/how-i-reduced-ci-rust-tests-duration-35-times-with-caching-and-nix/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "just some developer thoughts",
     "logo": {
       "@type": "ImageObject",
-      "url": "http://blog.noxy.site/favicon.ico"
+      "url": "https://nxy7.github.io/personal_blog/favicon.ico"
     }
   }
 }
 </script>
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D4BXHY930J"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-D4BXHY930J', { 'anonymize_ip': false });
+}
+</script>
+
 </head>
 
 <body class="" id="top">
@@ -137,7 +160,7 @@ Project Structure The way I structure my projects will influence some of the fut
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://blog.noxy.site/" accesskey="h" title="just some developer thoughts (Alt + H)">just some developer thoughts</a>
+            <a href="https://nxy7.github.io/personal_blog" accesskey="h" title="just some developer thoughts (Alt + H)">just some developer thoughts</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -178,7 +201,7 @@ Project Structure The way I structure my projects will influence some of the fut
 </div>
   </header> 
   <div class="post-content"><p>One of my project consists of backend (rust) split into many services and frontend made with Svelte. Sooner rather than later I found out that rust builds that we&rsquo;re rather quick locally took ages in CI, resulting in poor CI feedback experience and test times exceeding 15minutes. This post was made to help people struggling with simmilar issues.</p>
-<h2 id="project-structure">Project Structure<a hidden class="anchor" aria-hidden="true" href="#project-structure">#</a></h2>
+<h1 id="project-structure">Project Structure<a hidden class="anchor" aria-hidden="true" href="#project-structure">#</a></h1>
 <p>The way I structure my projects will influence some of the futhurer solutions, so I thought it&rsquo;s worthwhile sharing</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>    <span style="color:#75715e"># in this case all backend services all written in rust</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">backend</span>:
@@ -192,7 +215,7 @@ Project Structure The way I structure my projects will influence some of the fut
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">scripts</span>:
 </span></span><span style="display:flex;"><span>        - <span style="color:#ae81ff">ci_tests script</span>
 </span></span><span style="display:flex;"><span>        - <span style="color:#ae81ff">other scripts...</span>
-</span></span></code></pre></div><h2 id="test-script">Test script<a hidden class="anchor" aria-hidden="true" href="#test-script">#</a></h2>
+</span></span></code></pre></div><h1 id="test-script">Test script<a hidden class="anchor" aria-hidden="true" href="#test-script">#</a></h1>
 <p>As I&rsquo;ve mentioned above I&rsquo;m running tests from scripts locally and invoking scripts files in CI. Here&rsquo;s how my current ci_tests.nu script file looks like. You  might not be fammiliar with nushell (it&rsquo;s a shell but also a scripting language) but I&rsquo;m sure you can get the general idea.</p>
 <pre tabindex="0"><code class="language-nushell" data-lang="nushell">#!/usr/bin/env nu
 use ./utils.nu;
@@ -289,14 +312,14 @@ def build-rust-workspace [] {
 </code></pre><p>This script gives me really nice output in my CI
 <img loading="lazy" src="https://i.imgur.com/NonjwGm.png" alt="CI Pipeline output"  />
 </p>
-<h2 id="solution">Solution<a hidden class="anchor" aria-hidden="true" href="#solution">#</a></h2>
+<h1 id="solution">Solution<a hidden class="anchor" aria-hidden="true" href="#solution">#</a></h1>
 <p>There are two main techniques that I&rsquo;ve used to reduce CI times.</p>
 <ul>
 <li>Nix to manage project dependencies</li>
 <li>Cache rust build artifacts and project dependencies (managed by nix)</li>
 </ul>
 <p>Arguably you can get away with just caching, but I think the two really go well together.</p>
-<h3 id="nix">Nix<a hidden class="anchor" aria-hidden="true" href="#nix">#</a></h3>
+<h2 id="nix">Nix<a hidden class="anchor" aria-hidden="true" href="#nix">#</a></h2>
 <p>Nix describes itself as <code>tool that takes a unique approach to package management and system configuration.</code>. You don&rsquo;t need to use it as system configuration tool to get rewards from it&rsquo;s ecosystem. In short: nix allows you to specify your projects dependencies and let anyone run your project from any machine. Imagine you clone your project onto machine that doesn&rsquo;t have rust or nodejs installed. With nix you can specify your project dependencies in flake.nix file (there are other ways but nix seems to head toward using flakes) and run one command <code>nix develop . -c bash</code> to get shell with all dependencies ready to use. If that doesn&rsquo;t sound awsome to you I don&rsquo;t know what will.</p>
 <p>Without getting into internals of nix, when you run command above nix will download ALL dependencies needed by your project into &rsquo;nix store&rsquo;, that we can later cache in CI. Thanks to that if your project relies on rust, your CI will download rust only once and reuse it in futhurer CI runs.</p>
 <p>Here&rsquo;s how my flake.nix file looks like</p>
@@ -340,7 +363,7 @@ def build-rust-workspace [] {
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            keep-outputs = true
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            keep-derivations = true</span>            
 </span></span></code></pre></div><p>Setting store inside /home/runner is actually pretty important here, if You don&rsquo;t do that You might run into some permissions issues when trying to save data from cache.</p>
-<h3 id="caching">Caching<a hidden class="anchor" aria-hidden="true" href="#caching">#</a></h3>
+<h2 id="caching">Caching<a hidden class="anchor" aria-hidden="true" href="#caching">#</a></h2>
 <p>Github has actions that make caching very easy. I use <em>cache/restore</em> and <em>cache/save</em> actions to manage my cache. Here&rsquo;s my workflows/tests.yml file, I&rsquo;ll later explain parts related to caching.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#ae81ff">Tests</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">on</span>:
@@ -481,12 +504,33 @@ After:
   <footer class="post-footer">
     <ul class="post-tags">
     </ul>
-  </footer>
+  </footer><div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "nxyt" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
 </article>
     </main>
     
 <footer class="footer">
-    <span>&copy; 2023 <a href="http://blog.noxy.site/">just some developer thoughts</a></span>
+    <span>&copy; 2023 <a href="https://nxy7.github.io/personal_blog">just some developer thoughts</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
