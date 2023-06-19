@@ -1,5 +1,5 @@
 ---
-title: "Typescript is overhyped"
+title: "Nix projects"
 date: 2023-05-30T09:03:20-08:00
 draft: true
 ---
