@@ -1,3 +1,9 @@
+---
+title: "Zagadnienia egzamin licencjacki UMCS Informatyka"
+date: 2023-06-30T09:03:20-08:00
+draft: false
+---
+
 Krótka powtórka wiedzy wymaganej na obronie pracy licencjackiej na UMCS. Nie jest to wyczerpujące omówienie wszystkich problemów i osobiście polecałbym przeczytać cały ten post 1-2 razy, po czym poszukać materiałów bardziej szczegółowych do wybranych/cięższych tematów. 
 
 
