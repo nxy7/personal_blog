@@ -87,77 +87,250 @@ Instrukcje sterujące zależą od wykorzystywanego języka, najczęstsze to:
 
 # Protokoły TCP i UDP – porównanie i zastosowanie
 ## TCP
+Priorytetem TCP (Transmission Control Protocol) jest stabilność i niezawodność. TCP wymaga nawiązania połączenia przed przesłaniem właściwych pakietów. Dzięki temu możliwe jest na przykład ponowne przesłanie pakietów, jeżeli nie trafiły one do miejsca docelowego. Dodatkowe zadania związane z nawiązaniem i utrzymaniem tego połączenia zwiększają opóźnienie oraz przepustowość.
+TCP jest stosowane wszędzie tam gdzie wymagana jest komunikacja z pewnością, że dane dotrą do celu, czyli w większości aplikacji internetowych, stronach internetowych.
 ## UDP
+UDP (User Datagram Protocol) nie wymaga nawiązania wcześniejszego połączenia z klientem i od razu wysyła właściwe dane. Poza tym, że UDP nie wykonuje części czynności, nagłówki w tym protokole są również odpowiednio mniejsze (8 bajtów do 20-60 w TCP)
+UDP wykorzystywane jest tam, gdzie potrzebne jest strumieniowanie danych w czasie rzeczywistym, korzystają z niego często gry komputerowe online.
+
+Oba protokoły mają swój własny zestaw portów na komputerze, przykładowo jedna aplikacja może wykorzystywać port 420/tcp, inna 420/udp.
+
 
 # Adresowanie w warstwie Internetu modelu TCP/IP
+Pakiety wysyłane w sieci muszą zawierać adres IP oraz numer portu na który wysyłany jest dany pakiet. Adres składa się z 4 liczb 0-255 (np 192.168.1.1), a port ma numer od 0 do 65535. 
 
 # Porównanie zadań przełącznika (switcha) i routera
+- Switch wykorzystuje adresy MAC, Router adresy IP
+- Switche obsługują tylko sieci przewodowe sieci LAN
+- Router pracuje w wyższej warstwie sieci niż switch
+- Switch przekazuje pakiety do nieznanych odbiorców wszystkich, router nie wysyła ich nigdzie
 
 # Porównanie modelu OSI i TCP/IP
+- model tcp/ip ma 4 warstwy, OSI 7
+- warstwy TCP/IP to warstwa: aplikacji, transportu, internetowa, dostępu do sieci
+- warstwy OSI to: aplikacji, prezentacji, sesji, transportowa, sieciowa, łącza danych, fizyczna
+- warstwy OSI aplikacji, prezentacji oraz sesji odpowiadają jednej warstwie aplikacji modelu TCP/IP
+- warstwa dostępu do sieci modelu TCP/IP zawiera w sobie dwie warstwy OSI: łącza danych oraz fizyczną 
 
 # Mechanizm enkapsulacji w modelu OSI
+Ruch sieciowy przekazywany jest do niższych warstw, gdzie pakiety są obudowywane w ramki wymagane przez daną warstwę. Przykładowo warstwa aplikacji przy obudowaniu w warstwę transportową zawiera ramki z wymaganymi adresami odbiorcy.
 
 # Obiekt i klasa w wybranym języku programowania zorientowanym obiektowo
+Javascript: 
+```js
+class Rect {
+constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
+  // Getter
+  get area() {
+    return this.calcArea();
+  }
+  // Method
+  calcArea() {
+    return this.height * this.width;
+  }
+  *getSides() {
+    yield this.height;
+    yield this.width;
+    yield this.height;
+    yield this.width;
+  }
+}
+
+const square = new Rectangle(10, 10);
+```
+Co tu gadać, koń jaki jest każdy widzi. Klasa definiuje kształ obiektów danego typu, po czym obiekty tworzy się korzystając ze słowa `new`.
 
 # Hermetyzacja, dziedziczenie i polimorfizm w programowaniu obiektowym.
+## Hermetyzacja (enkapsulacja)
+Ograniczanie dostępu do pól/metod zewnętrznym obiektom. Enkapsulacja pozwala na podejmowanie decyzji nt. tego jak konsumenci mają korzystać z danego API. Przykładem enkapsulacji jest stworzenie klasy, która ma 2 metody publiczne i więcej metod prywatnych. Prywatne metody mogą być wykorzystywane w definicjach publicznych metod, ale nie mogą być wywołane bezpośrednio przez użytkownika.
+## Dziedziczenie
+Dziedziczenie pozwala na rozbudowywanie klasy bazowej o nowe pola oraz metody. Szczegóły zależą od konkretnego języka. Z zasady klasy dziedziczące zawierają się w zbiorze klasy bazowej, mogą być więc używane polimorficznie.
+## Polimorfizm
+Możliwość wykorzystywania obiektów różnych typów w ten sam sposób. Przykładem mogą być klasy dziedziczące, które mogą być wykorzystywane w miejscu klasy bazowej. Innym przykładem polimorfizmu są interfejsy, które mogą być implementowane przez różne klasy. Jeśli obiekty różnych klas implementują ten sam interfejs, to mogą być wykorzystywane polimorficznie.
 
 # Interfejsy i klasy abstrakcyjne w programowaniu obiektowym
+Klasa abstrakcyjna, to klasa która nie może mieć żadnej instancji. Taka klasa dalej może mieć metody statyczne. Interfejsy to forma kontraktu w której często specyfikowana jest tylko sygnatura funkcji i zwracany typ danych.
 
 # Paradygmat i przykłady programowania generycznego (rodzajowego)
+Programowanie generyczne to rodzaj metaprogramowania, gdzie celem jest stworzenie generycznych metod, które mogą działać na różnych typach danych. Zależnie od języka umożliwiane jest to na różne sposoby. C++ wykorzystuje szablony, Java, C#, Typescript, Rust typy generyczne, a Zig (mniej znany język) Comptime (kod Zig, działający na etapie kompilacji, nie w runtime).
 
 # Algorytmy sortowania
+Algorytmy sortowania mają różną złożoność czasową i wymaganiami co do pamięci wymaganej do przeprowadzenia sortowania. Algorytmy typu bubble sort mają O(n^2), a quicksort oraz mergesort O(n log(n)). Jest nieskończenie wiele sposobów na posortowanie ciągu wartości, więc opiszę na szybko tylko dwa wydajne algorytmy - mergesort i quicksort.
+Quicksort dzieli tablicę na dwie części, elementy mniejsze od wybranego pivota (elementu dzielącego tablicę) przerzuca na lewo, większe na prawo. Następnie na obu częściach wykonywany jest quicksort.
+Mergesort dzieli tablicę na dwie części, a dopiero później łączy je w większe tablice. Różnice w praktyce jest taka, że mergesort najpierw rekursyjnie rozbija problem aż do samego dołu (aż do tablic o rozmiarze 1) i sortuje w trakcie łączenia, quicksort natomiast sortuje połówki tablic, aż cała tablica będzie posortowana.  
 
 # Strategia „dziel i zwyciężaj” budowania algorytmów
+Strategia ta dzieli problem na mniejsze problemy tego samego typu, rozwiązuje je rekursyjnie, po czym scala rozwiązania.
+Przykłady: quicksort, mergesort, binary search
 
 # Algorytmy typu zachłannego
+Algorytm, który w każdym kroku dokonuje decyzji lokalnie optymalnej, czyli takiej która wydaje się najlepsza w danym kroku. Przykładem może być algorytm Dijkstry,   
 
 # Algorytmy z nawrotami
+Algorytmy, które tworzą drzewo rozwiązań. Jeśli nie spełniają określonego warunku lub trafią na sekwencję opracowaną w przeszłości wracają do innej ścieżki drzewa rozwiązań.
 
 # Grafy, drzewa, kopce – charakterystyka i przykłady zastosowania
+## Grafy
+
+## Drzewa
+
+## Kopce
 
 # Wielowarstwowa organizacja systemów komputerowych
+Od najniższej:
+- warstwa sprzętowa - wszystkie komponenty i peryferia PC
+- system operacyjny - pozwala na kontakt między użytkownikiem a sprzętem
+- oprogramowanie narzędziowe - sterowniki i programy potrzebne do funkcjonowania systemu
+- oprogramowanie użytkowe - reszta programów
+- użytkownik - człowiek lub inna maszyna konsumująca oprogramowanie
 
 # System operacyjny – charakterystyka, zadania, klasyfikacja
+System operacyjny zajmuje się:
+- planowaniem i przydziałem zasobów
+- synchronizacją i komunikacją procesów
+- obsługuje warstwę sprzętową
+
+Jest [wiele różnych](http://smurf.mimuw.edu.pl/node/871) klasyfikacji systemów operacyjnych: ze względu na liczbę wykonywanych programów, sposób przetwarzania itd. Szczerze to mało ciekawe klasyfikacje, które wydają mi się zbędną abstrakcją więc nie będę rozwijał tutaj tematu.
 
 # Procesy i wątki – charakterystyka i problemy
+Proces, to pewien program wykonywany w systemie, który dostał pulę zasobów do wykorzystania. W obrębie jednego procesu może znajdować się wiele wątków, które mogą być wykonywane równolegle lub na zmianę. Wątki są lżejsze od procesów i program może bez problemu stworzyć wiele tysięcy różnych wątków.
 
 # Zarządzanie pamięcią operacyjną w systemie operacyjnym.
+Programy korzystają z API systemu operacyjnego do alokowania i uwalniania potrzebnej pamięci. Przy wywołaniu odpowiedniego API system szuka wolnego miejsca. Szukanie wolnego miejsca może odbywać się korzystając z jednej z wielu różnych strategii (m.in. pierwsze wolne, najlepsze).
+
 # Organizacja systemu plików i pamięci zewnętrznej.
+Systemy plików NFTS/FAT32/EXT4?
+
 # Różnice pomiędzy obsługą zdarzeń w przerwaniach sprzętowych a obsługą zdarzeń w pętli programowej.
+Obsługiwanie zdarzeń w pętli programowej jest mało wydajne, ponieważ wymaga ciągłego sprawdzania bitów związanych z danymi wydarzeniami. System nie reaguje bezpośrednio na zdarzenie, tylko czeka aż program dojdzie do danego fragmentu kodu sprawdzającego stan flagi. Prowadzi to do większych opóźnień w reakcji na bodziec.
+Metoda przerwań polega na tym, że to układy zgłaszają do jednostki centralnej potrzebę obsługi (w przeciwieństwie do pętli programowej gdzie system sprawdza stan układów). Gdy takie zdarzenie ma miejsce system przerywa aktualnie wykonywany kod i zaczyna obsługiwać dane wydarzenie.
+
 # Powody i przykłady stosowania mikrokontrolerów zamiast typowych komputerów.
+Powody:
+- niższa cena
+- mniej ruchomych części (tzn brak systemu, który może wprowadzać całą nową klasę błędów)
+- mniejsze zużycie prądu
+
+Przykłady:
+- urządzenia RTV/AGD
+- prosta elektronika
+
 # Modele reprezentacji wiedzy.
+[Źródło](http://staff.iiar.pwr.wroc.pl/dariusz.banasiak/si/SI_w5_notatki.pdf)
 # Mechanizmy wnioskowań.
+Wnioskowanie wstecz - wykazanie prawdziwości hipotezy na podstawie prawdziwości przesłanek.
+Wnioskowanie wprzód - na podstawie prawdziwych faktów tworzone są nowe prawdziwe twierdzenia. Nowe twierdzenia mogę generować nowe wnioski. Proces jest powtarzany aż dojdzie się do zakładanej hipotezy lub aż skończą się nowe fakty.
+Metoda rezolucji - dowodzenie przez zaprzeczenie.
+
 # Metody uczenia maszynowego.
+- Uczenie nadzorowane - uczenie następuje w wyniku porównania wyników programu z prawidłowymi odpowiedziami.
+- Uczenie nienadzorowane - 
+- Uczenie ze wzmocnieniem - uczenie następuje w wyniku reakcji na dane ze środowiska.
+
 # Budowa sieci neuronowych.
+Sieci neuronowe składają się z jednej lub więcej warstw neuronów, z których każdy ma pewien próg aktywacji. Jeśli 
+
 # Normalizacja baz danych – pierwsza, druga i trzecia postać normalna.
+## Pierwsza postać normalna
+- wiersz opisuje jeden obiekt
+- wszystkie kolumny zawierają wartości elementarne/skalarne
+- nie zawiera powtórzeń informacji na temat obiektu
+- kolejność wierszy może być dowolna
+## Druga postać normalna
+- "Relacja jest w drugiej postaci normalnej wtedy i tylko wtedy, gdy jest w I postaci normalnej i żadna kolumna niekluczowa nie jest częściowo funkcyjnie zależna od jakiegokolwiek klucza potencjalnego" - nie pytaj
+A tak serio: chodzi o to że tabela nie zawiera informacji, które możesz wywnioskować z klucza potencjalnego. Jeśli masz tabelę gdzie są imiona i płcie osób, to przy założeniu że imie jest przypisane do konkretnej płci, informacja o płci jest powtórzeniem danych - możesz ją wywnioskować z klucza potencjalnego (imienia), więc nie jest to druga postać normalna.
+## Trzecia postać normalna
+- "Relacja jest w trzeciej postaci normalnej wtedy i tylko wtedy, gdy jest w II postaci normalnej i żaden atrybut niekluczowy nie jest zależny funkcyjnie od innych atrybutów niekluczowych" - też nie pytaj
+Znowu bardziej serio: żadna kolumna ma nie być do wywnioskowania z żadnej innej kolumny. Przechowujemy tylko informacje unikalne i jest git.
+
 # Modele baz danych (logiczny, relacyjny, fizyczny).
+[Źródło](https://dbadmin.net.pl/model-logiczny-baz-danych-jak-dziala-model-danych/)
+## Logiczny
+Model obiektów i relacji między danymi obiektami.
+## Relacyjny
+Dane pogrupowane są w relacje reprezentowane przez tabele. Osobiście rozumiem to jako model logiczny, tylko rozbity do postaci normalnej.
+## Fizyczny
+Implementacja modelu logicznego w komputerze. 
+
 # Rodzaje zapytań w języku SQL.
+SELECT, INSERT, DELETE, UPDATE - robią to co sugerują ich nazwy
 # Funkcje w języku SQL.
+Przykład funkcji SQL w Postgres
+```sql
+CREATE FUNCTION add(a integer, b integer) RETURNS integer
+    LANGUAGE SQL
+    IMMUTABLE
+    RETURNS NULL ON NULL INPUT
+    RETURN a + b;
+```
+
 # Transakcje w bazach danych.
+Wiele operacji w bazach danych mogą być przeprowadzane w obrębie jednej transakcji. Jeśli na którymś kroku transakcja nie powiedzie się, to wszystkie wprowadzone wcześniej zmiany zostaną cofnięte. 
+
 # Standardowe metodyki procesu wytwórczego oprogramowania.
+- model kaskadowy - "Obejmuje on pięć głównych czynności, które wykonywane są tylko raz w procesie tworzenia: definiowanie i analizowanie wymagań, projektowanie oprogramowania, implementację i testowanie jednostek, integrację i testowanie systemu oraz wdrożenie
+i pielęgnację."
+- model ewolucyjny - stworzenie prototypu, danie go użytkownikowi i tworzenie nowych iteracji oprogramowania na podstawie zebranego feedbacku
+- metody zwinne - metodyki zwinne mają dobrze funkcjonować w zmieniającym się środowisku (na przykład przy niezbyt dobrze zdefiniowanych wymaganiach dla projektu)
+
 # Metodyki zwinne – SCRUM.
+SCRUM, metodyka zwinna tworzenia oprogramowania oparta o koncepcję sprintów. Najpierw planowany jest sprint (zakres prac), następnie miejsce ma sprint (najdłuższy etap, bo robiona jest prawdziwa robota), w trakcie sprintu codziennie miejsce mają spotkania scrumowe gdzie każdy bardzo krótko mówi na jakim etapie prac jest i co zamierza zrobić w ciągu najbliższego czasu. Pod koniec sprintu miejsce ma jego przegląd, gdzie kontrolowane są postępy zrobione w trakcie sprintu i wyniki przedstawiane są interesariuszom. Ostatnim etapem jest retrospektywa, w trakcie której zespół może ocenić sprint i podzielić się wiedzą, która może sprawdzić, że kolejne sprinty przebiegną jeszcze sprawniej.
+
 # Testowanie oprogramowania.
+Testy automatyczne, manualne, CICD pipeline. Szeroki temat i ciężko powiedzieć co może interesować atakujących pracę :P
+
 # Diagramy UML.
+Jak ktoś lubi rysować zamiast programować to można.
+
 # Wzorce projektowe programowania obiektowego.
+[Źródło](https://www.oodesign.com/) - wzorców jest dużo, więc rzucę sam link. Najważniejsze to: singleton, strategia, fabryka, builder, obserwator, dekorator. Mimo wszystko warto kojarzyć więcej. 
+
 # Definicja funkcji obliczalnej (częściowo rekurencyjnej).
+
+
 # Maszyna Turinga jako model procesów obliczalnych.
+
+
 # Zagadnienia nierostrzygalne w kontekście obliczalności.
+
+
+
 # Definicja i klasy złożoności obliczeniowej – czasowej i pamięciowej.
+
+
+
 # Główne paradygmaty programowania – charakterystyka i przykłady.
+- Obiektowe - program składa się z obiektów i ich wzajemnych oddziaływań. To one są centralnym elementem aplikacji.
+- Funkcyjne - programowanie czerpiące z deklaratywnego paradygmatu programowania. Program powinien składać się z jak największej ilości deklaratywnych funkcji bez żadnych skutków ubocznych. 
+- Imperatywne - mówisz maszynie jak ma coś zrobić (sumowanie tabelicy w pętli for)
+- Deklaratywne - mówisz maszynie co ma zrobić dla ciebie (metoda .reduce() na tabeli)
+I wiele innych, które często mają pokrywające się definicje i zahaczają o podobne koncepty nt. tego jak powinno być tworzone oprogramowanie.
+
 # Gramatyki bezkontekstowe – definicje, charakterystyki i przykłady.
 # Analiza leksykalna, syntaktyczna i semantyczna kodu.
 # Rodzaje błędów w kontekście analizy leksykalnej, syntaktycznej i semantycznej kodu.
+
 # Deklaratywne programowanie funkcyjne: rachunek lambda, monady.
 # Deklaratywne programowanie w logice: klauzule Horne'a, nawracanie.
+
 # Podstawowe układy systemu mikroprocesorowego i sposób wymiany informacji pomiędzy nimi.
 # Dekoder, multiplekser i demultiplekser: budowa, zasada, działania, przeznaczenie, zastosowanie.
 # Kodowanie liczb ze znakiem w systemie U2, generowanie liczby ze znakiem przeciwnym, dodawanie i odejmowanie.
 # Budowa i zasada działania generatora obrazu w systemie mikroprocesorowym.
+
 # Mechanizm sesji w zarządzaniu stanem aplikacji sieciowej.
 # Mechanizm gniazd – pojęcie, sposób realizacji i zastosowanie
+
 # Metody obsługi wielu klientów równolegle w aplikacjach sieciowych.
 # Pocztowe protokoły warstwy aplikacji.
+SMPT, POP, IMAP
+
 # Porównanie HTTP i WebSocket.
+HTTP służy do przesłania pakietu danych, websocket nawiązuje połącznie utrzymywane przez dłuższy okres czasu. Oba korzystają z TCP. WebSocket tworzy tunel i pozwala na przesyłanie wiadomości między dwoma komunikującymi się stronami, HTTP jest oparte o model ZAPYTANIE->ODPOWIEDŹ.
+
 # Atrybuty bezpieczeństwa informacji.
 # Modele dystrybucji kluczy kryptograficznych.
 # Rodzaje zagrożeń oraz ochrona aplikacji sieciowych.
