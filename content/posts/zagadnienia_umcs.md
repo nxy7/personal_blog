@@ -4,7 +4,7 @@ date: 2023-06-30T09:03:20-08:00
 draft: false
 ---
 
-Krótka powtórka wiedzy wymaganej na obronie pracy licencjackiej na UMCS. Nie jest to wyczerpujące omówienie wszystkich problemów i osobiście polecałbym przeczytać cały ten post 1-2 razy, po czym poszukać materiałów bardziej szczegółowych do wybranych/cięższych tematów. 
+Krótka powtórka wiedzy wymaganej na obronie pracy licencjackiej na UMCS. Nie jest to wyczerpujące omówienie wszystkich problemów i osobiście polecałbym przeczytać cały ten post 1-2 razy, po czym poszukać materiałów bardziej szczegółowych do wybranych/cięższych tematów. Najzwyczajniej w świecie uznałem, że ucząc się zrobię krótkie podsumowanie każdego tematu tak, żeby mieć chociaż powierzchowne pojęcie na jego temat. Zebranie materiałów w jednym miejscu jest też dobre do utrwalania wiedzy. Proszę korzystać na własne ryzyko ( ͡° ͜ʖ ͡°) 
 
 
 # Wektory i macierze – definicje i podstawowe operacje.
@@ -292,7 +292,7 @@ i pielęgnację."
 SCRUM, metodyka zwinna tworzenia oprogramowania oparta o koncepcję sprintów. Najpierw planowany jest sprint (zakres prac), następnie miejsce ma sprint (najdłuższy etap, bo robiona jest prawdziwa robota), w trakcie sprintu codziennie miejsce mają spotkania scrumowe gdzie każdy bardzo krótko mówi na jakim etapie prac jest i co zamierza zrobić w ciągu najbliższego czasu. Pod koniec sprintu miejsce ma jego przegląd, gdzie kontrolowane są postępy zrobione w trakcie sprintu i wyniki przedstawiane są interesariuszom. Ostatnim etapem jest retrospektywa, w trakcie której zespół może ocenić sprint i podzielić się wiedzą, która może sprawdzić, że kolejne sprinty przebiegną jeszcze sprawniej.
 
 # Testowanie oprogramowania.
-Testy automatyczne, manualne, CICD pipeline. Szeroki temat i ciężko powiedzieć co może interesować atakujących pracę :P
+Testy automatyczne, manualne, CICD pipeline. Szeroki temat i ciężko powiedzieć co może interesować atakujących pracę :P W skrócie - testy automatyczne to testy, które kodujesz sam (na przykład przy użyciu frameworków e2e jak cypress/playwright), testy manualne są wtedy jak płacisz komuś z indii, żeby klikał w `buttona` i sprawdzał co się dzieje. CICD to rozwinięcie testów automatycznych, gdzie są one uruchamiane przy wrzuceniu kodu i w reakcji na wynik testów może następować aktualizacja aplikacji.
 
 # Diagramy UML.
 Jak ktoś lubi rysować zamiast programować to można.
@@ -335,18 +335,27 @@ W skrócie, klasy złożoności oznaczają zbiór języków spełniających wyma
 I wiele innych, które często mają pokrywające się definicje i zahaczają o podobne koncepty nt. tego jak powinno być tworzone oprogramowanie.
 
 # Gramatyki bezkontekstowe – definicje, charakterystyki i przykłady.
+"Gramatyki bezkontekstowe są formalizmem służącym do opisu składni". Inaczej jest to sposób na uproszczenie różnych języków i zapisanie ich w tej samej notacji (BNF). Dzieki temu języki o różnych składniach mogą być sprowadzone do tego samego zapisu, co pozwala na używanie tych samych narzędzi do analizy różnych języków.
 
 
 # Analiza leksykalna, syntaktyczna i semantyczna kodu.
 ## Analiza leksylana
+Proces rozbijania programów na jednostki logiczne (takie jak instrukcje sterujące, identyfikatory lub konkretne dane).
+Leks - ciąg znaków stanowiący semantycznie niepodzielną całość
+Żeton - stała reprezentująca rodzaj wczytanego tokenu
+Atrybut - opcjonalna wartość reprezentująca znaczenie tokenu
 ## Analiza syntaktyczna
+Analizator syntaktyczny (parser) wykorzystuje efekt działania analizy leksykalnej (rozbite elementarne jednostki logiczne) i dokonuje analizy składniowej, w celu sprawdzenia czy dane mają właściwą strukturę.
 ## Analiza semantyczna
-
+Analiza semantyczna służy upewnieniu się, że podany kod ma sens logiczny.
 
 # Rodzaje błędów w kontekście analizy leksykalnej, syntaktycznej i semantycznej kodu.
 ## Analiza leksylana
+- użycie niewłaściwych leksów (ciąg znaków lub operacji, które nie istnieją)
 ## Analiza syntaktyczna
+- błędy 'składniowe', brak operacji między zmiennymi
 ## Analiza semantyczna
+- błędy logiczne, przypisanie wartości niewłaściwego typu, użycie niewłaściwego typu danych, kontrola ilości i typów parametrów i argumentów funkcji oraz metod
 
 
 # Deklaratywne programowanie funkcyjne: rachunek lambda, monady.
