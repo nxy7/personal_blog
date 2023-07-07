@@ -1,6 +1,6 @@
 ---
 title: "Gaming on linux"
-date: 2023-05-30T09:03:20-08:00
+date: 2023-05-27T09:03:20-08:00
 draft: true
 ---
 Every time you ask someone what his favourite programming language is, chances are they'll respond "Typescript!". I think most people just don't have much contact with wide range of technologies and will usually pick language they use the most as their 'favourite'. It's even more obvious in case of Typescript which with all it's flaws is infinitely better than javascript, so in comparion it seems like the best thing in the world.
