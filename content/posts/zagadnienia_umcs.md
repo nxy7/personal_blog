@@ -21,9 +21,11 @@ Aby dodać lub odjąć dwa wektory wystarczy odjąć od siebie analogiczne warto
 Wektor można pomnożyć lub podzielić przez liczbę, co skutkuje zmianą obu wartości w wektorze. [4,3] * 2 = [8,6]
 
 ### Iloczyn skalarny
+`[a1, b1] * [a2, b2] = a1 * a2 + b1 * b2`. Przykład: `[5,3] * [-1, 7] = 5*-1 + 3*7 = -5 + 21 = 16`
 
 ## Macierze 
 Macierz to układ liczb, symboli lub wyrażeń zapisany w prostokątnej tablicy. Macierze wykorzystywane są przykładowo do rozwiązywania równań liniowych.
+![zdj macierzy](https://eduinf.waw.pl/inf/prg/009_kurs_avr/images_t/0007.p1.gif)
 
 ### Rozwiązywanie równań liniowych
 
@@ -180,10 +182,13 @@ Algorytmy, które tworzą drzewo rozwiązań. Jeśli nie spełniają określoneg
 
 # Grafy, drzewa, kopce – charakterystyka i przykłady zastosowania
 ## Grafy
+Graf to zbiór wierchołków (węzłów) oraz krawędzi. Krawędzie mogą być skierowane, czyli pozwalać na ruch tylko w jedną stronę np: A -> B - możesz z A przejść do B, ale nie odwrotnie. Krawędzie nieskierowane (A -- B) pozwalają na ruch w obie strony.
 
 ## Drzewa
+Drzewo to specjalny rodzaj grafu, który zaczyna sie od jednego źródła (root), a każdy węzeł łączy się tylko ze swoim rodzicem i z 0 lub więcej dzieci.
 
 ## Kopce
+Kopiec to drzewo, gdzie wartości dziecka są w stałej relacji z wartością rodzica. Inaczej, drzewo układa dane według pewnej hierarchii semantycznej, kopiec według wartości.
 
 # Wielowarstwowa organizacja systemów komputerowych
 Od najniższej:
@@ -226,6 +231,7 @@ Przykłady:
 
 # Modele reprezentacji wiedzy.
 [Źródło](http://staff.iiar.pwr.wroc.pl/dariusz.banasiak/si/SI_w5_notatki.pdf)
+
 # Mechanizmy wnioskowań.
 Wnioskowanie wstecz - wykazanie prawdziwości hipotezy na podstawie prawdziwości przesłanek.
 Wnioskowanie wprzód - na podstawie prawdziwych faktów tworzone są nowe prawdziwe twierdzenia. Nowe twierdzenia mogę generować nowe wnioski. Proces jest powtarzany aż dojdzie się do zakładanej hipotezy lub aż skończą się nowe fakty.
@@ -237,7 +243,7 @@ Metoda rezolucji - dowodzenie przez zaprzeczenie.
 - Uczenie ze wzmocnieniem - uczenie następuje w wyniku reakcji na dane ze środowiska.
 
 # Budowa sieci neuronowych.
-Sieci neuronowe składają się z jednej lub więcej warstw neuronów, z których każdy ma pewien próg aktywacji. Jeśli 
+Sieci neuronowe składają się z jednej lub więcej warstw neuronów, z których każdy ma pewien próg aktywacji. 
 
 # Normalizacja baz danych – pierwsza, druga i trzecia postać normalna.
 ## Pierwsza postać normalna
@@ -295,16 +301,29 @@ Jak ktoś lubi rysować zamiast programować to można.
 [Źródło](https://www.oodesign.com/) - wzorców jest dużo, więc rzucę sam link. Najważniejsze to: singleton, strategia, fabryka, builder, obserwator, dekorator. Mimo wszystko warto kojarzyć więcej. 
 
 # Definicja funkcji obliczalnej (częściowo rekurencyjnej).
+"funkcja o argumentach i wartościach w zbiorze liczb naturalnych (lub w zbiorze tekstów), dla której można podać algorytm znajdujący wartość funkcji na podstawie danego argumentu".
+Prościej - funkcja obliczalna to funkcja, którą może 'rozwiązać' maszyna turinga. Po co komplikują świrusy nie wiem.
 
+Bonus: "Funkcja f (x1, . . . , xn) jest częściowo rekurencyjna, jeśli może być
+otrzymana z funkcji prostych za pomocą skończonej liczby zastosowań
+operacji złożenia, rekursji prostej oraz minimum efektywnego."
 
 # Maszyna Turinga jako model procesów obliczalnych.
+[dobre źródło](https://wazniak.mimuw.edu.pl/index.php?title=Z%C5%82o%C5%BCono%C5%9B%C4%87_obliczeniowa/Wyk%C5%82ad_1:_Obliczenia_w_modelu_maszyny_Turinga)
+Maszyna turinga składa się z:
+- nieskończonej taśmy z danymi wejściowymi (odpowiednik pamięci komputera). Może zawierać dowolne symbole, ale zwykle są to 0 i 1.
+- głowica zapisująco odczytująca - może odczytywać i zapisywać symbole oraz poruszać się wzdłuż taśmy
+- układ sterowania głowicą (odpowiednik procesora) - reaguje na dane odczytane przez głowicę i wysyła do niej kolejne polecenia
 
+Maszyna Turinga jest w stanie rozwiązać wszystkie problemy obliczalne, jeśli więc udowodni się że jakiś problem nie może być rozwiązany przez maszynę turinga, nie należy on do kategorii problemów obliczalnych (nie mogą go rozwiązać nasze komputery).
 
 # Zagadnienia nierostrzygalne w kontekście obliczalności.
-
+Są zagadnienia, dla których udowodniono, że należą do grupy problemów nierozstrzygalnych: np. [problem stopu](https://www.codingninjas.com/studio/library/halting-problem-in-the-theory-of-computation).  
 
 
 # Definicja i klasy złożoności obliczeniowej – czasowej i pamięciowej.
+[źródło](https://wazniak.mimuw.edu.pl/index.php?title=Z%C5%82o%C5%BCono%C5%9B%C4%87_obliczeniowa/Wyk%C5%82ad_3:_Klasy_z%C5%82o%C5%BCono%C5%9Bci_obliczeniowej#Klasy_z.C5.82o.C5.BCono.C5.9Bci_czasowej_i_pami.C4.99ciowej)
+W skrócie, klasy złożoności oznaczają zbiór języków spełniających wymagania stawiane przez daną maszynę turinga (SPACE, TIME, NSPACE, NTIME).
 
 
 
@@ -316,21 +335,53 @@ Jak ktoś lubi rysować zamiast programować to można.
 I wiele innych, które często mają pokrywające się definicje i zahaczają o podobne koncepty nt. tego jak powinno być tworzone oprogramowanie.
 
 # Gramatyki bezkontekstowe – definicje, charakterystyki i przykłady.
+
+
 # Analiza leksykalna, syntaktyczna i semantyczna kodu.
+## Analiza leksylana
+## Analiza syntaktyczna
+## Analiza semantyczna
+
+
 # Rodzaje błędów w kontekście analizy leksykalnej, syntaktycznej i semantycznej kodu.
+## Analiza leksylana
+## Analiza syntaktyczna
+## Analiza semantyczna
+
 
 # Deklaratywne programowanie funkcyjne: rachunek lambda, monady.
+## Rachunek lambda
+## Monady
+
+
 # Deklaratywne programowanie w logice: klauzule Horne'a, nawracanie.
+## Klauzule Horne'a
+## Nawracanie
+
 
 # Podstawowe układy systemu mikroprocesorowego i sposób wymiany informacji pomiędzy nimi.
+
+
 # Dekoder, multiplekser i demultiplekser: budowa, zasada, działania, przeznaczenie, zastosowanie.
+
+
 # Kodowanie liczb ze znakiem w systemie U2, generowanie liczby ze znakiem przeciwnym, dodawanie i odejmowanie.
+
+
 # Budowa i zasada działania generatora obrazu w systemie mikroprocesorowym.
 
+
 # Mechanizm sesji w zarządzaniu stanem aplikacji sieciowej.
+
+
 # Mechanizm gniazd – pojęcie, sposób realizacji i zastosowanie
 
+
 # Metody obsługi wielu klientów równolegle w aplikacjach sieciowych.
+Zadania związane z obsługą ruchu w aplikacjach sieciowych zawsze mają duże opóźnienia związane z ciągłym czekaniem na odpowiedź. W zależności od wykorzystywanego języka można poradzić sobie z nimi na kilka sposobów.
+1) tworzenie zielonych wątków (wiele języków wprowadza własną definicję wątków) do obsługi zapytania
+2) wykorzystanie mechanizmów asynchronicznych (np pętla zdarzeń w JS lub async scheduler w RUST)
+
 # Pocztowe protokoły warstwy aplikacji.
 SMPT, POP, IMAP
 
