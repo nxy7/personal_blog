@@ -106,6 +106,10 @@ Oba protokoły mają swój własny zestaw portów na komputerze, przykładowo je
 
 # Adresowanie w warstwie Internetu modelu TCP/IP
 Pakiety wysyłane w sieci muszą zawierać adres IP oraz numer portu na który wysyłany jest dany pakiet. Adres składa się z 4 liczb 0-255 (np 192.168.1.1), a port ma numer od 0 do 65535. 
+Publiczne adresy IP dzielą się na 3 klasy (A,B,C). Wartość pierwszego oktetu oznacza to do jakiej klasy należy (na przykład 0-127 należy do klasy A). Klasy te mają przyporządkowane domyślne maski sieci:
+- A: 255.0.0.0
+- B: 255.255.0.0
+- C: 255.255.255.0
 
 # Porównanie zadań przełącznika (switcha) i routera
 - Switch wykorzystuje adresy MAC, Router adresy IP
@@ -372,18 +376,24 @@ Analiza semantyczna służy upewnieniu się, że podany kod ma sens logiczny.
 
 
 # Dekoder, multiplekser i demultiplekser: budowa, zasada, działania, przeznaczenie, zastosowanie.
+[link](https://docplayer.pl/15999547-Multiplekser-dekoder-demultiplekser-koder.html)
+
 
 
 # Kodowanie liczb ze znakiem w systemie U2, generowanie liczby ze znakiem przeciwnym, dodawanie i odejmowanie.
-
+[link](https://eduinf.waw.pl/inf/alg/006_bin/0018.php)
 
 # Budowa i zasada działania generatora obrazu w systemie mikroprocesorowym.
+??
 
 
 # Mechanizm sesji w zarządzaniu stanem aplikacji sieciowej.
+- ciasteczka
+- JWT
 
 
 # Mechanizm gniazd – pojęcie, sposób realizacji i zastosowanie
+[gniazda](https://edu.pjwstk.edu.pl/wyklady/mpr/scb/W8/W8.htm)
 
 
 # Metody obsługi wielu klientów równolegle w aplikacjach sieciowych.
