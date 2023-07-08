@@ -10,15 +10,15 @@ Krótka powtórka wiedzy wymaganej na obronie pracy licencjackiej na UMCS. Nie j
 # Wektory i macierze – definicje i podstawowe operacje.
 
 ## Wektory
-Obiekt matematyczny opisywany za pomocą modułu (wartość), kierunku oraz zwrotu. Wektor w przestrzeni 2d przyjmuje postać pary punktów - na przykład [3, 4], co oznacza że aby stworzyć wektor w przestrzeni 2d należy ruszyć się o 3 punkty na osi X i 4 na osi Y.
+Obiekt matematyczny opisywany za pomocą modułu (wartość), kierunku oraz zwrotu. Wektor w przestrzeni 2d przyjmuje postać pary punktów - na przykład `[3, 4]`, co oznacza że aby stworzyć wektor w przestrzeni 2d należy ruszyć się o 3 punkty na osi X i 4 na osi Y.
 
 ![Wektory](https://www.matemaks.pl/grafika/g0559.png)
 
 ### Dodawanie i odejmowanie
-Aby dodać lub odjąć dwa wektory wystarczy odjąć od siebie analogiczne wartości. [-10. 5] + [3, 2] = [-7, 7]
+Aby dodać lub odjąć dwa wektory wystarczy odjąć od siebie analogiczne wartości. `[-10. 5]` + `[3, 2]` = `[-7, 7]`
 
 ### Mnożenie i dzielenie
-Wektor można pomnożyć lub podzielić przez liczbę, co skutkuje zmianą obu wartości w wektorze. [4,3] * 2 = [8,6]
+Wektor można pomnożyć lub podzielić przez liczbę, co skutkuje zmianą obu wartości w wektorze. `[4,3] * 2 = [8,6]`
 
 ### Iloczyn skalarny
 `[a1, b1] * [a2, b2] = a1 * a2 + b1 * b2`. Przykład: `[5,3] * [-1, 7] = 5*-1 + 3*7 = -5 + 21 = 16`
@@ -84,7 +84,6 @@ Instrukcje sterujące zależą od wykorzystywanego języka, najczęstsze to:
 
 - if
 - switch
-- while
 - for
 - while
 - do; while;
@@ -306,6 +305,7 @@ Jak ktoś lubi rysować zamiast programować to można.
 
 # Definicja funkcji obliczalnej (częściowo rekurencyjnej).
 "funkcja o argumentach i wartościach w zbiorze liczb naturalnych (lub w zbiorze tekstów), dla której można podać algorytm znajdujący wartość funkcji na podstawie danego argumentu".
+
 Prościej - funkcja obliczalna to funkcja, którą może 'rozwiązać' maszyna turinga. Po co komplikują świrusy nie wiem.
 
 Bonus: "Funkcja f (x1, . . . , xn) jest częściowo rekurencyjna, jeśli może być
@@ -324,12 +324,9 @@ Maszyna Turinga jest w stanie rozwiązać wszystkie problemy obliczalne, jeśli 
 # Zagadnienia nierostrzygalne w kontekście obliczalności.
 Są zagadnienia, dla których udowodniono, że należą do grupy problemów nierozstrzygalnych: np. [problem stopu](https://www.codingninjas.com/studio/library/halting-problem-in-the-theory-of-computation).  
 
-
 # Definicja i klasy złożoności obliczeniowej – czasowej i pamięciowej.
 [źródło](https://wazniak.mimuw.edu.pl/index.php?title=Z%C5%82o%C5%BCono%C5%9B%C4%87_obliczeniowa/Wyk%C5%82ad_3:_Klasy_z%C5%82o%C5%BCono%C5%9Bci_obliczeniowej#Klasy_z.C5.82o.C5.BCono.C5.9Bci_czasowej_i_pami.C4.99ciowej)
 W skrócie, klasy złożoności oznaczają zbiór języków spełniających wymagania stawiane przez daną maszynę turinga (SPACE, TIME, NSPACE, NTIME).
-
-
 
 # Główne paradygmaty programowania – charakterystyka i przykłady.
 - Obiektowe - program składa się z obiektów i ich wzajemnych oddziaływań. To one są centralnym elementem aplikacji.
@@ -340,7 +337,6 @@ I wiele innych, które często mają pokrywające się definicje i zahaczają o 
 
 # Gramatyki bezkontekstowe – definicje, charakterystyki i przykłady.
 "Gramatyki bezkontekstowe są formalizmem służącym do opisu składni". Inaczej jest to sposób na uproszczenie różnych języków i zapisanie ich w tej samej notacji (BNF). Dzieki temu języki o różnych składniach mogą być sprowadzone do tego samego zapisu, co pozwala na używanie tych samych narzędzi do analizy różnych języków.
-
 
 # Analiza leksykalna, syntaktyczna i semantyczna kodu.
 ## Analiza leksylana
@@ -361,21 +357,38 @@ Analiza semantyczna służy upewnieniu się, że podany kod ma sens logiczny.
 ## Analiza semantyczna
 - błędy logiczne, przypisanie wartości niewłaściwego typu, użycie niewłaściwego typu danych, kontrola ilości i typów parametrów i argumentów funkcji oraz metod
 
-
 # Deklaratywne programowanie funkcyjne: rachunek lambda, monady.
 ## Rachunek lambda
 [źródło](http://logic.amu.edu.pl/images/2/22/Splawskilambda.pdf)
 "jest teorią funkcji rozumianych konstruktywnie jako reguły obliczania, tj. przekształcania argumentu w wynik" 
+
 ## Monady
+Monady to tylko monoidy z kategorii endofunktorów :P
 [filmik](https://www.youtube.com/watch?v=N5HsN40YzfE)
+Podsumowanie: monady to konstrukt posiadający funkcję unit (czyli opakowującą wartość w postać 'monady', taką jak konstruktor klasy) oraz funkcję bind (możliwość przeprowadzenia innej funkcji na argumencie przechowywanym przez monadę). Przykładem monady może być następujący kod.
+```js
+class Monad {
+  // constructor to inaczej funkcja unit, która opakowuje 'x' w wrapper jakim jest tutaj klasa 'Monad'
+  constructor(x: number){
+    this.x = x;
+  }
+  // bind przyjmuje funkcję która zwraca nową Monadę
+  bind(fn: (x)=>number): Monad {
+    return new Monad(fn(this.x))
+  }
+}
+
+let monadChain = new Monad(3)
+let incremented = monadChain.bind(x => x+1)
+let doubled = incremented.bind(x => x*2)
+```
+Nie sprawdzałem czy ten kod działa, ale przekazuje sens całego konceptu. 
 
 # Deklaratywne programowanie w logice: klauzule Horne'a, nawracanie.
 ## Klauzule Horne'a
 [źródło](https://pl.wikipedia.org/wiki/Klauzula_Horna)
 ## Nawracanie
 ![nawracanie](images/nawracanie.png)
-
-
 
 # Podstawowe układy systemu mikroprocesorowego i sposób wymiany informacji pomiędzy nimi.
 - mikroprocesor
@@ -387,8 +400,6 @@ Analiza semantyczna służy upewnieniu się, że podany kod ma sens logiczny.
 
 # Dekoder, multiplekser i demultiplekser: budowa, zasada, działania, przeznaczenie, zastosowanie.
 [link](https://docplayer.pl/15999547-Multiplekser-dekoder-demultiplekser-koder.html)
-
-
 
 # Kodowanie liczb ze znakiem w systemie U2, generowanie liczby ze znakiem przeciwnym, dodawanie i odejmowanie.
 [link](https://eduinf.waw.pl/inf/alg/006_bin/0018.php)
@@ -418,6 +429,27 @@ SMPT, POP, IMAP
 HTTP służy do przesłania pakietu danych, websocket nawiązuje połącznie utrzymywane przez dłuższy okres czasu. Oba korzystają z TCP. WebSocket tworzy tunel i pozwala na przesyłanie wiadomości między dwoma komunikującymi się stronami, HTTP jest oparte o model ZAPYTANIE->ODPOWIEDŹ.
 
 # Atrybuty bezpieczeństwa informacji.
+- Integralność - informacja jest kompletna i nie została zmodyfikowana
+- Dostępność - dostęp do informacji nie zostanie utracony, a informacja nie zostanie zniszczona
+- Poufność - informacja nie zostanie udostępniona nieuprawnionym odbiorcom
+
 # Modele dystrybucji kluczy kryptograficznych.
+- model kurierski
+- model elektroniczny
+
 # Rodzaje zagrożeń oraz ochrona aplikacji sieciowych.
+Zagrożenia:
+- Ataki ddos
+- SQL injection
+- Przechwytywanie ruchu
+- Man in the middle
+
+Ochrona:
+- SSL
+- Walidacja wszystkich danych wprowadzanych przez użytkowników
+- Szyfrowanie ruchu
+
 # Charakterystyka kryptografii symetrycznej oraz asymetrycznej. 
+- algorytmy symetryczne mają jeden klucz do szyfrowania i odszyfrowania informacji, asymetryczny ma dwa klucze: prywatny i publiczny
+- w szyfrowaniu asymetrycznym klucz prywatny służy do szyfrowania informacji, publiczny do ich odszyfrowania
+- szyfrowanie asymetryczne jest bezpieczniejsze, ponieważ ujawnienie klucza publicznego nie zmniejsza zaufania do informacji
