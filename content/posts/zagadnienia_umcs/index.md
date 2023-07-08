@@ -364,15 +364,25 @@ Analiza semantyczna służy upewnieniu się, że podany kod ma sens logiczny.
 
 # Deklaratywne programowanie funkcyjne: rachunek lambda, monady.
 ## Rachunek lambda
+[źródło](http://logic.amu.edu.pl/images/2/22/Splawskilambda.pdf)
+"jest teorią funkcji rozumianych konstruktywnie jako reguły obliczania, tj. przekształcania argumentu w wynik" 
 ## Monady
-
+[filmik](https://www.youtube.com/watch?v=N5HsN40YzfE)
 
 # Deklaratywne programowanie w logice: klauzule Horne'a, nawracanie.
 ## Klauzule Horne'a
+[źródło](https://pl.wikipedia.org/wiki/Klauzula_Horna)
 ## Nawracanie
+![nawracanie](images/nawracanie.png)
+
 
 
 # Podstawowe układy systemu mikroprocesorowego i sposób wymiany informacji pomiędzy nimi.
+- mikroprocesor
+- pamięć operacyjna RAM
+- pamięć stała ROM
+- układ wejścia wyjścia
+- magistrale danych i adresowe
 
 
 # Dekoder, multiplekser i demultiplekser: budowa, zasada, działania, przeznaczenie, zastosowanie.
