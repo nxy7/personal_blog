@@ -6,13 +6,12 @@ draft: false
 
 Krótka powtórka wiedzy wymaganej na obronie pracy licencjackiej na UMCS. Nie jest to wyczerpujące omówienie wszystkich problemów i osobiście polecałbym przeczytać cały ten post 1-2 razy, po czym poszukać materiałów bardziej szczegółowych do wybranych/cięższych tematów. Najzwyczajniej w świecie uznałem, że ucząc się zrobię krótkie podsumowanie każdego tematu tak, żeby mieć chociaż powierzchowne pojęcie na jego temat. Zebranie materiałów w jednym miejscu jest też dobre do utrwalania wiedzy. Proszę korzystać na własne ryzyko ( ͡° ͜ʖ ͡°) 
 
-
 # Wektory i macierze – definicje i podstawowe operacje.
 
 ## Wektory
 Obiekt matematyczny opisywany za pomocą modułu (wartość), kierunku oraz zwrotu. Wektor w przestrzeni 2d przyjmuje postać pary punktów - na przykład `[3, 4]`, co oznacza że aby stworzyć wektor w przestrzeni 2d należy ruszyć się o 3 punkty na osi X i 4 na osi Y.
 
-![Wektory](https://www.matemaks.pl/grafika/g0559.png)
+![wektory](https://www.matemaks.pl/grafika/g0559.png)
 
 ### Dodawanie i odejmowanie
 Aby dodać lub odjąć dwa wektory wystarczy odjąć od siebie analogiczne wartości. `[-10. 5]` + `[3, 2]` = `[-7, 7]`
@@ -72,12 +71,15 @@ Norma IEEE 754 stanowi standard zapisywania liczb całkowitych przy użyciu 32 l
 Pierwszy bit podobnie jak w przypadku liczb całkowitych zapisywany jest do kodowania ujemnych liczb (tzn jeśli ma wartość 1 to liczba jest ujemna). Dalej 8/11 bitów koduje wykładnik (nie może składać sie z samych zer lub jedynek), czyli potęgę do jakiej należy podnieść znormalizowaną wartość liczby. Reszta bitów wykorzystywana jest do zapisu liczby w znormalizowanym formacie binarnym. 
 
 # Typ, zmienna, obiekt i zarządzanie pamięcią
+
 ## Typ
 Typy danych niosą informacje na temat tego jak interpretowany powinien być dany wycinek pamięci. Ta sama sekwencja zer i jedynek może oznaczać różne rzeczy, zależnie od tego czy interpretowana jest jako liczba całkowita, zmiennoprzecinkowa lub znak tekstowy.
+
 ## Zmienna
 Konstrukt programistyczny składający się z nazwy symbolicznej, miejsce przechowywania oraz wartość. 
+
 ## Obiekt
-Konstukt złożony z jednego lub więcej typów prostych danych. Przykładem obiektu jest instancja klasy w c++.
+Struktura zawierająca dane i metody.
 
 # Instrukcje sterujące przepływem programu
 Instrukcje sterujące zależą od wykorzystywanego języka, najczęstsze to:
@@ -96,8 +98,10 @@ Instrukcje sterujące zależą od wykorzystywanego języka, najczęstsze to:
 ## TCP
 Priorytetem TCP (Transmission Control Protocol) jest stabilność i niezawodność. TCP wymaga nawiązania połączenia przed przesłaniem właściwych pakietów. Dzięki temu możliwe jest na przykład ponowne przesłanie pakietów, jeżeli nie trafiły one do miejsca docelowego. Dodatkowe zadania związane z nawiązaniem i utrzymaniem tego połączenia zwiększają opóźnienie oraz przepustowość.
 TCP jest stosowane wszędzie tam gdzie wymagana jest komunikacja z pewnością, że dane dotrą do celu, czyli w większości aplikacji internetowych, stronach internetowych.
+
 ## UDP
 UDP (User Datagram Protocol) nie wymaga nawiązania wcześniejszego połączenia z klientem i od razu wysyła właściwe dane. Poza tym, że UDP nie wykonuje części czynności, nagłówki w tym protokole są również odpowiednio mniejsze (8 bajtów do 20-60 w TCP)
+
 UDP wykorzystywane jest tam, gdzie potrzebne jest strumieniowanie danych w czasie rzeczywistym, korzystają z niego często gry komputerowe online.
 
 Oba protokoły mają swój własny zestaw portów na komputerze, przykładowo jedna aplikacja może wykorzystywać port 420/tcp, inna 420/udp.
@@ -216,7 +220,7 @@ Proces, to pewien program wykonywany w systemie, który dostał pulę zasobów d
 Programy korzystają z API systemu operacyjnego do alokowania i uwalniania potrzebnej pamięci. Przy wywołaniu odpowiedniego API system szuka wolnego miejsca. Szukanie wolnego miejsca może odbywać się korzystając z jednej z wielu różnych strategii (m.in. pierwsze wolne, najlepsze).
 
 # Organizacja systemu plików i pamięci zewnętrznej.
-Systemy plików NFTS/FAT32/EXT4?
+Systemy plików NTFS/FAT32/EXT4?
 
 # Różnice pomiędzy obsługą zdarzeń w przerwaniach sprzętowych a obsługą zdarzeń w pętli programowej.
 Obsługiwanie zdarzeń w pętli programowej jest mało wydajne, ponieważ wymaga ciągłego sprawdzania bitów związanych z danymi wydarzeniami. System nie reaguje bezpośrednio na zdarzenie, tylko czeka aż program dojdzie do danego fragmentu kodu sprawdzającego stan flagi. Prowadzi to do większych opóźnień w reakcji na bodziec.
@@ -234,15 +238,24 @@ Przykłady:
 
 # Modele reprezentacji wiedzy.
 [Źródło](http://staff.iiar.pwr.wroc.pl/dariusz.banasiak/si/SI_w5_notatki.pdf)
+- "W podejściu deklaratywnym wiedza z danej dziedziny jest zbiorem specyficznych faktów,
+a korzystanie z wiedzy polega na stosowaniu do tego zbioru ogólnych procedur manipulacji
+faktami. W reprezentacjach deklaratywnych następuje wyraźne oddzielenie wiedzy z danej dziedziny od sposobu wykorzystania tej wiedzy w procesie wnioskowania. Przykładem tego podejścia
+jest reprezentacja logiczna."
+- "W podejściu proceduralnym zakłada się, że przeważającą część wiedzy o świecie stanowią
+informacje o procesach i działaniach. "Wiedzieć" jest równoważne z "wiedzieć jak": znajomość
+danego pojęcia sprowadza się głównie do umiejętności manipulacji tym pojęciem. W reprezentacji
+proceduralnej wiedza zawarta jest w procedurach (podprogramach), które wiedzą jak należy się
+zachować w określonej sytuacji."
 
 # Mechanizmy wnioskowań.
-Wnioskowanie wstecz - wykazanie prawdziwości hipotezy na podstawie prawdziwości przesłanek.
-Wnioskowanie wprzód - na podstawie prawdziwych faktów tworzone są nowe prawdziwe twierdzenia. Nowe twierdzenia mogę generować nowe wnioski. Proces jest powtarzany aż dojdzie się do zakładanej hipotezy lub aż skończą się nowe fakty.
-Metoda rezolucji - dowodzenie przez zaprzeczenie.
+- Wnioskowanie wstecz zaczyna się od hipotezy i próbuje się dojść z niego do aksjomatów. 
+- Wnioskowanie w przód - na podstawie faktów tworzone są nowe twierdzenia. Nowe twierdzenia mogę generować nowe wnioski. Proces jest powtarzany aż dojdzie się do zakładanej hipotezy lub aż skończą się nowe fakty.
+- Metoda rezolucji - metoda automatycznego dowodzenia twierdzeń oparta na generowaniu nowych klauzul, aż dojdzie się do sprzeczności.
 
 # Metody uczenia maszynowego.
 - Uczenie nadzorowane - uczenie następuje w wyniku porównania wyników programu z prawidłowymi odpowiedziami.
-- Uczenie nienadzorowane - 
+- Uczenie nienadzorowane - grupuje dane według podanych kryteriów
 - Uczenie ze wzmocnieniem - uczenie następuje w wyniku reakcji na dane ze środowiska.
 
 # Budowa sieci neuronowych.
@@ -254,24 +267,32 @@ Sieci neuronowe składają się z jednej lub więcej warstw neuronów, z któryc
 - wszystkie kolumny zawierają wartości elementarne/skalarne
 - nie zawiera powtórzeń informacji na temat obiektu
 - kolejność wierszy może być dowolna
+
 ## Druga postać normalna
 - "Relacja jest w drugiej postaci normalnej wtedy i tylko wtedy, gdy jest w I postaci normalnej i żadna kolumna niekluczowa nie jest częściowo funkcyjnie zależna od jakiegokolwiek klucza potencjalnego" - nie pytaj
+
 A tak serio: chodzi o to że tabela nie zawiera informacji, które możesz wywnioskować z klucza potencjalnego. Jeśli masz tabelę gdzie są imiona i płcie osób, to przy założeniu że imie jest przypisane do konkretnej płci, informacja o płci jest powtórzeniem danych - możesz ją wywnioskować z klucza potencjalnego (imienia), więc nie jest to druga postać normalna.
+
 ## Trzecia postać normalna
 - "Relacja jest w trzeciej postaci normalnej wtedy i tylko wtedy, gdy jest w II postaci normalnej i żaden atrybut niekluczowy nie jest zależny funkcyjnie od innych atrybutów niekluczowych" - też nie pytaj
+
 Znowu bardziej serio: żadna kolumna ma nie być do wywnioskowania z żadnej innej kolumny. Przechowujemy tylko informacje unikalne i jest git.
 
 # Modele baz danych (logiczny, relacyjny, fizyczny).
 [Źródło](https://dbadmin.net.pl/model-logiczny-baz-danych-jak-dziala-model-danych/)
+
 ## Logiczny
 Model obiektów i relacji między danymi obiektami.
+
 ## Relacyjny
 Dane pogrupowane są w relacje reprezentowane przez tabele. Osobiście rozumiem to jako model logiczny, tylko rozbity do postaci normalnej.
+
 ## Fizyczny
 Implementacja modelu logicznego w komputerze. 
 
 # Rodzaje zapytań w języku SQL.
 SELECT, INSERT, DELETE, UPDATE - robią to co sugerują ich nazwy
+
 # Funkcje w języku SQL.
 Przykład funkcji SQL w Postgres
 ```sql
@@ -387,6 +408,7 @@ Nie sprawdzałem czy ten kod działa, ale przekazuje sens całego konceptu.
 # Deklaratywne programowanie w logice: klauzule Horne'a, nawracanie.
 ## Klauzule Horne'a
 [źródło](https://pl.wikipedia.org/wiki/Klauzula_Horna)
+Klauzula w której co najwyżej jeden element jest niezanegowany.
 ## Nawracanie
 ![nawracanie](images/nawracanie.png)
 
@@ -415,6 +437,7 @@ Nie sprawdzałem czy ten kod działa, ale przekazuje sens całego konceptu.
 
 # Mechanizm gniazd – pojęcie, sposób realizacji i zastosowanie
 [gniazda](https://edu.pjwstk.edu.pl/wyklady/mpr/scb/W8/W8.htm)
+Abstrakcja oznaczająca punkt docelowy dwustronnej komunikacji procesów działających równolegle w sieci. Częścią tej abstrakcji są porty, na których może odbywać się komunikacja sieciowa. Komputery mają dwa zestawy portów TCP oraz UDP od 0 do 65535. 
 
 
 # Metody obsługi wielu klientów równolegle w aplikacjach sieciowych.
@@ -434,8 +457,8 @@ HTTP służy do przesłania pakietu danych, websocket nawiązuje połącznie utr
 - Poufność - informacja nie zostanie udostępniona nieuprawnionym odbiorcom
 
 # Modele dystrybucji kluczy kryptograficznych.
-- model kurierski
-- model elektroniczny
+- model kurierski - przekazywanie klucza drogą fizyczną, np. pocztą
+- model elektroniczny - wykorzystanie elektorniki do przekazania klucza
 
 # Rodzaje zagrożeń oraz ochrona aplikacji sieciowych.
 Zagrożenia:
